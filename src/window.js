@@ -1,11 +1,18 @@
 $(() => {
   const { exec } = require("child_process");
-  const crypto = require('crypto');
   const fs = require('fs');
+  const os = require('os');
 
+  var bashrc
+  if (os.platform=="linux"){
+    bashrc = "~/.bashrc"
+  } else {
+    bashrc = "~/.bash_profile"
+  }
 
-  exec("source ~/.bash_profile && tb-profiler", (error, stdout, stderr) => {
+  exec(`source ~/.bashrc && tb-profiler`, {shell:'/bin/bash'}, (error, stdout, stderr) => {
       if (error) {
+          console.log(error.message)
           $('#install_check').html(`<div class="alert alert-danger" role="alert">Warning! TB-Profiler installation not found! Please install using the instructions found <a href="https://github.com/jodyphelan/TBProfiler/">here</a>.</div>`);
           return;
       }
@@ -25,12 +32,12 @@ $(() => {
 
     var file = document.getElementById('files').files[0];
     $('#test').text(file.name);
-    exec(`tb-profiler vcf_profile ${file.path}`, (error, stdout, stderr) => {
+    exec(`tb-profiler vcf_profile ${file.path} --dir /tmp`, {shell:'/bin/bash'}, (error, stdout, stderr) => {
         if (error) {
             $('#results').text(`error: ${error.message}`);
             return;
         }
-        var contents = JSON.parse(fs.readFileSync("results/por5_vcf.results.json", 'utf8'));
+        var contents = JSON.parse(fs.readFileSync("/tmp/results/por5_vcf.results.json", 'utf8'));
         $('#results').text(contents.drtype);
     });
   })
