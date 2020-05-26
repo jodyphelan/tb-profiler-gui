@@ -1,30 +1,102 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="UTF-8">
-    <title>Hello World!</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <link rel="stylesheet" href="index.css">
+    <head>
+        <meta charset="UTF-8">
+        <title>Hello World!</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+        <link rel="stylesheet" href="index.css">
 
-    <script>
-      delete module.exports
-    </script>
-    <script src="https://code.jquery.com/jquery-3.2.1.js"></script>
-    <script src="window.js" charset="utf-8"></script>
-  </head>
-  <body>
-    <h1>TB-Profiler</h1>
-    <div id="install_check">
-      Checking TB-Profiler install
-    </div>
-    <div class="">
-      <input type="file" id="files" name="files" multiple>
-    </div>
-    <div class="">
-      <button type="button" name="button" id="button">Submit</button>
-    </div>
-    <div class="" id="results">
+        <script>
+          delete module.exports
+        </script>
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+        <script src="window.js" charset="utf-8"></script>
+        <style media="screen">
+        #drop_zone {
+            border: 5px solid blue;
+            width:  200px;
+            height: 100px;
+        }
+        </style>
+    </head>
+    <body>
+        <h1>TB-Profiler</h1>
+        <div id="install_check">
+          <div class="alert alert-warning" role="alert">
+                Checking TB-Profiler install
+          </div>
+        </div>
 
-    </div>
-  </body>
+
+        <div class="accordion" id="accordionExample">
+
+            <!-- Section 1 -->
+            <div class="card">
+                <div class="card-header" id="headingOne">
+                    <h2 class="mb-0">
+                        Select input data
+                    </h2>
+                </div>
+
+                <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+                    <div class="card-body">
+                        <input type="file" id="files" name="files" multiple>
+
+                        <div class="row">
+                            <div class="col-auto ml-auto">
+                                <button class="btn btn-info" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">Next</button>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+
+
+            <!-- Section 2 -->
+            <div class="card">
+                <div class="card-header" id="headingTwo">
+                    <h2 class="mb-0">
+                        Settings
+                    </h2>
+                </div>
+                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+                    <div class="card-body">
+
+                        <div class="row">
+                            <div class="col-auto mr-auto">
+                                <button class="btn btn-warning" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">Previous</button>
+                            </div>
+                            <div class="col-auto ml-auto">
+                                <button class="btn btn-success" type="button" id="submit_button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree" >Submit</button>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- Section 3 -->
+            <div class="card">
+                <div class="card-header" id="headingThree">
+                    <h2 class="mb-0">
+                        Results
+                    </h2>
+                </div>
+                <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+                    <div class="card-body">
+                        <div id="results" class="">
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </body>
 </html>

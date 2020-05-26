@@ -4,27 +4,24 @@ $(() => {
   const fs = require('fs');
 
 
-  exec("tb-profiler", (error, stdout, stderr) => {
+  exec("source ~/.bash_profile && tb-profiler", (error, stdout, stderr) => {
       if (error) {
-          $('#install_check').text(`error: ${error.message}`);
+          $('#install_check').html(`<div class="alert alert-danger" role="alert">Warning! TB-Profiler installation not found! Please install using the instructions found <a href="https://github.com/jodyphelan/TBProfiler/">here</a>.</div>`);
           return;
       }
       if (stderr) {
         if (stderr.includes("TBProfiler")){
-          $('#install_check').text("TB-Profiler found!");
+          $('#install_check').html(`<div class="alert alert-success" role="alert">Commandline tb-profiler found!</div>`);
         } else {
           $('#install_check').text(stderr);
         }
           return;
       }
-      $('#install_check').text(`stdout: ${stdout}`);
   });
-  $('#files').bind('input propertychange', function() {
 
-    var files = document.getElementById('files').files;
-    $('#test').text("file selected");
-  })
-  $('#button').on('click', function() {
+
+
+  $('#submit_button').on('click', function() {
 
     var file = document.getElementById('files').files[0];
     $('#test').text(file.name);
